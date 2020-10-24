@@ -1,0 +1,1 @@
+# FlubuCore DefaultTemplate

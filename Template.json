@@ -1,0 +1,8 @@
+{
+	"Tokens": [
+		{
+			"Token": "{{SolutionFileName}}",
+			"Description": "Enter relative path to solution filename:",			
+		}
+	]
+}
