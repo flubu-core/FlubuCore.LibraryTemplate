@@ -1,4 +1,5 @@
-﻿using FlubuCore.Context;
+﻿using System;
+using FlubuCore.Context;
 using FlubuCore.Context.Attributes.BuildProperties;
 using FlubuCore.IO;
 using FlubuCore.Scripting;
@@ -19,12 +20,10 @@ namespace BuildScript
         //// BuildConfiguration is stored in flubu session so it doesn't need to be defined in build task and test tasks etc.
         [BuildConfiguration] 
         public string BuildConfiguration { get; set; } = "Release";
-        
-        //// Attribute task fetches build version from 'Version.txt' file. This can also be achieved by creating a target and adding FetchBuildVersionFromFile task to target. 
-        //// Alternatively flubu supports fetching of build version out of the box with GitVersionTask. Just apply [GitVersion] attribute on property.
-        [FetchBuildVersionFromFile(ProjectVersionFileName = "Version.txt")]
+
+        //// Alternatively flubu supports fetching of build version out of the box with FetchBuildVersionFromFileTask or GitVersionTask. Just apply [FetchBuildVersionFromFile] or [GitVersion] attribute on property.
         [BuildVersion]
-        public BuildVersion BuildVersion { get; set; }
+        public BuildVersion BuildVersion { get; set; } = new BuildVersion(new Version(1, 0, 0, 0));
 
         public FullPath OutputDir => RootDirectory.CombineWith("output");
 
