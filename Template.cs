@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlubuCore.Templating;
-
+using FlubuCore.Templating.Model;
 
 public class Template : IFlubuTemplate
 {
     public void ConfigureTemplate(IFlubuTemplateBuilder templateBuilder)
     {
-        templateBuilder.AddReplacementToken(new TemplateReplacmentToken()
+        templateBuilder.AddReplacementToken(new TemplateReplacementToken()
         {
             Token = "{{SolutionFileName}}",
             Description = "Enter relative path to solution filename:",
