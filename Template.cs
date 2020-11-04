@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlubuCore.Templating;
-using FlubuCore.Templating.Model;
+using FlubuCore.Templating.Models;
 
 public class Template : IFlubuTemplate
 {
