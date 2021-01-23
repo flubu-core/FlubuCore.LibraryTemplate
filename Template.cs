@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,11 @@ public class Template : IFlubuTemplate
         {
             Token = "{{SolutionFileName}}",
             Description = "Enter relative path to solution filename:",
+            InputType = InputType.Files,
+            Files = new FilesInputType()
+            {
+                AllowedFileExtension = "sln"
+            }
         });
-     }
+    }
 }
-
