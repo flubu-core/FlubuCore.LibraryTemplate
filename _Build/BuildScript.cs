@@ -80,8 +80,7 @@ namespace BuildScript
             var nugetPackages = context.GetFiles(OutputDir, "*.nupkg");
             foreach (var nugetPackage in nugetPackages)
             {
-                context.CoreTasks().NugetPush(nugetPackage)
-                    .ServerUrl("http://hook/nuget/api/v2/package")
+                context.CoreTasks().NugetPush(nugetPackage)                   
                     .ApiKey(NugetApiKey)
                     .ServerUrl("https://www.nuget.org/api/v2/package")
                     .DoNotFailOnError()
