@@ -65,12 +65,7 @@ namespace BuildScript
                 .SetDescription("Publishes nuget package.")
                 .Must((c => !string.IsNullOrEmpty(NugetApiKey)))
                 .DependsOn(pack)
-                .ForEach(nugetPackages, (nugetPackagePath, target) =>
-                {
-                    target.AddCoreTask(x => x.NugetPush(nugetPackagePath)
-                        .ServerUrl("https://www.nuget.org/api/v2/package")
-                        .ApiKey(NugetApiKey));
-                });
+                .Do(NugetPublish);
 
             context.CreateTarget("All")
                 .SetDescription("Builds the solution and publishes nuget package.")
@@ -78,6 +73,19 @@ namespace BuildScript
               // Uncomment if your library contains tests otherwise remove this dependency.
               //.DependsOn(tests)
                 .DependsOn(nugetPush);
+        }
+
+        public void NugetPublish(ITaskContext context)
+        {
+            var nugetPackages = context.GetFiles(OutputDir, "*.nupkg");
+            foreach (var nugetPackage in nugetPackages)
+            {
+                context.CoreTasks().NugetPush(nugetPackage)
+                    .ServerUrl("http://hook/nuget/api/v2/package")
+                    .ApiKey(NugetApiKey)
+                    .DoNotFailOnError()
+                    .Execute(context);
+            }
         }
     }
 }
