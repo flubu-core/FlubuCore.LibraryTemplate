@@ -83,6 +83,7 @@ namespace BuildScript
                 context.CoreTasks().NugetPush(nugetPackage)
                     .ServerUrl("http://hook/nuget/api/v2/package")
                     .ApiKey(NugetApiKey)
+                    .ServerUrl("https://www.nuget.org/api/v2/package")
                     .DoNotFailOnError()
                     .Execute(context);
             }
